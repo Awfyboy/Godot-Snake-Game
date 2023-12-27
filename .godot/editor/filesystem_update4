@@ -1,0 +1,9 @@
+res://Scenes/Game.tscn
+res://text_theme.tres
+res://Scripts/Game.gd
+res://Scripts/Segment.gd
+res://Scripts/SignalBus.gd
+res://Scenes/Head.tscn
+res://Scenes/Apple.tscn
+res://Scenes/Segment.tscn
+res://Scripts/Head.gd

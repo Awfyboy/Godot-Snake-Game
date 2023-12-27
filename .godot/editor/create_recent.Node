@@ -1,0 +1,14 @@
+AudioStreamPlayer
+VBoxContainer
+ColorRect
+Control
+Sprite2D
+CollisionShape2D
+Area2D
+CanvasLayer
+SubViewport
+Node2D
+TextureRect
+Label
+HBoxContainer
+Timer

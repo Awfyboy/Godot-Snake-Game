@@ -1,0 +1,204 @@
+[gd_scene load_steps=16 format=3 uid="uid://b8ar2fkqodoi8"]
+
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_gnuk0"]
+[ext_resource type="Texture2D" uid="uid://g7omorjh0j52" path="res://Sprites/Floor.png" id="1_tyrto"]
+[ext_resource type="PackedScene" uid="uid://davrjqog8hx8u" path="res://Scenes/Head.tscn" id="3_cdrt4"]
+[ext_resource type="Texture2D" uid="uid://cnp4nl4hcb5ty" path="res://Sprites/BG.png" id="4_2i8gy"]
+[ext_resource type="LabelSettings" uid="uid://cexoy0bwjny3o" path="res://text_theme.tres" id="5_231va"]
+[ext_resource type="Texture2D" uid="uid://2t0nntr5738y" path="res://Sprites/Apple.png" id="6_wj8oh"]
+[ext_resource type="Texture2D" uid="uid://dtlybf4p0beda" path="res://Sprites/MovementNone.png" id="7_dwsf7"]
+[ext_resource type="FontFile" uid="uid://de3lhc3lbnu05" path="res://LeagueSpartan-Bold.otf" id="8_wmcol"]
+[ext_resource type="AudioStream" uid="uid://di6umj5egyse" path="res://Sounds/Lose.wav" id="9_3r8eb"]
+[ext_resource type="AudioStream" uid="uid://et7pwhelql6e" path="res://Sounds/Eat.wav" id="10_jek71"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8dyx"]
+size = Vector2(32, 608)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehe4w"]
+size = Vector2(672, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6b7sx"]
+font = ExtResource("8_wmcol")
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_b6l08"]
+font = ExtResource("8_wmcol")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_d663s"]
+font = ExtResource("8_wmcol")
+font_size = 18
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_gnuk0")
+
+[node name="Floor" type="Sprite2D" parent="."]
+position = Vector2(400, 400)
+texture = ExtResource("1_tyrto")
+region_enabled = true
+region_rect = Rect2(0, 0, 800, 800)
+
+[node name="Snake" type="Node2D" parent="."]
+
+[node name="Head" parent="Snake" instance=ExtResource("3_cdrt4")]
+position = Vector2(400, 592)
+
+[node name="Apples" type="Node2D" parent="."]
+
+[node name="Border" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
+position = Vector2(48, 432)
+shape = SubResource("RectangleShape2D_k8dyx")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border"]
+position = Vector2(752, 432)
+shape = SubResource("RectangleShape2D_k8dyx")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Border"]
+position = Vector2(400, 112)
+shape = SubResource("RectangleShape2D_ehe4w")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Border"]
+position = Vector2(400, 752)
+shape = SubResource("RectangleShape2D_ehe4w")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 800.0
+metadata/_edit_lock_ = true
+
+[node name="BorderGroup" type="Control" parent="CanvasLayer/UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="MainBorder" type="TextureRect" parent="CanvasLayer/UI/BorderGroup"]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 128.0
+texture = ExtResource("4_2i8gy")
+
+[node name="Border" type="TextureRect" parent="CanvasLayer/UI/BorderGroup"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 800.0
+texture = ExtResource("4_2i8gy")
+
+[node name="Border2" type="TextureRect" parent="CanvasLayer/UI/BorderGroup"]
+layout_mode = 0
+offset_left = 736.0
+offset_right = 800.0
+offset_bottom = 800.0
+texture = ExtResource("4_2i8gy")
+
+[node name="Border3" type="TextureRect" parent="CanvasLayer/UI/BorderGroup"]
+layout_mode = 0
+offset_top = 736.0
+offset_right = 800.0
+offset_bottom = 800.0
+texture = ExtResource("4_2i8gy")
+
+[node name="Time" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 62.0
+offset_right = 736.0
+offset_bottom = 86.0
+text = "TIME: 00:00"
+label_settings = ExtResource("5_231va")
+
+[node name="TimeTimer" type="Timer" parent="CanvasLayer/UI/Time"]
+autostart = true
+
+[node name="Score" type="HBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 48.0
+offset_right = 736.0
+offset_bottom = 84.0
+alignment = 2
+
+[node name="Apple" type="TextureRect" parent="CanvasLayer/UI/Score"]
+layout_mode = 2
+texture = ExtResource("6_wj8oh")
+stretch_mode = 4
+
+[node name="ScoreText" type="Label" parent="CanvasLayer/UI/Score"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "x0"
+label_settings = ExtResource("5_231va")
+horizontal_alignment = 2
+
+[node name="InputDisplay" type="TextureRect" parent="CanvasLayer/UI"]
+modulate = Color(0.415686, 0.631373, 0.537255, 1)
+layout_mode = 0
+offset_left = 352.0
+offset_top = 16.0
+offset_right = 448.0
+offset_bottom = 112.0
+texture = ExtResource("7_dwsf7")
+
+[node name="GameOver" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/GameOver"]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 800.0
+color = Color(0.00392157, 0.027451, 0.00392157, 0.592157)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOver"]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 800.0
+alignment = 1
+
+[node name="GameOverText" type="Label" parent="CanvasLayer/GameOver/VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER!"
+label_settings = SubResource("LabelSettings_6b7sx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverTime" type="Label" parent="CanvasLayer/GameOver/VBoxContainer"]
+layout_mode = 2
+text = "TIME:"
+label_settings = SubResource("LabelSettings_b6l08")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverScore" type="Label" parent="CanvasLayer/GameOver/VBoxContainer"]
+layout_mode = 2
+text = "SCORE:"
+label_settings = SubResource("LabelSettings_b6l08")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartHint" type="Label" parent="CanvasLayer/GameOver/VBoxContainer"]
+layout_mode = 2
+text = "
+PRESS R TO CONTINUE"
+label_settings = SubResource("LabelSettings_d663s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_3r8eb")
+
+[node name="Eat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_jek71")
+volume_db = 6.0
+
+[connection signal="area_entered" from="Border" to="." method="_on_border_area_entered"]
+[connection signal="timeout" from="CanvasLayer/UI/Time/TimeTimer" to="." method="_on_time_timer_timeout"]

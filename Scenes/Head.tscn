@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://davrjqog8hx8u"]
+
+[ext_resource type="Texture2D" uid="uid://depibclpexrdd" path="res://Sprites/Head.png" id="1_b01bd"]
+[ext_resource type="Script" path="res://Scripts/Head.gd" id="1_sj56r"]
+[ext_resource type="AudioStream" uid="uid://trkorban7qyq" path="res://Sounds/Turn.wav" id="3_ms545"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d506d"]
+radius = 13.0384
+
+[node name="Head" type="Area2D"]
+script = ExtResource("1_sj56r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("1_b01bd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 2
+shape = SubResource("CircleShape2D_d506d")
+
+[node name="Turn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ms545")
+volume_db = 20.0
