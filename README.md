@@ -10,4 +10,4 @@
  - Use basic string formatting for strings such as time,
  - Create a basic game over screen.
 
- ![snake game in Godot Engine](/.media/example.gif)
+ ![snake game in Godot Engine](/.media/example_screenshot.png)
