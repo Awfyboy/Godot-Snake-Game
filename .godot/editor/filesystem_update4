@@ -3,3 +3,4 @@ res://text_theme.tres
 res://Scenes/Head.tscn
 res://Scenes/Apple.tscn
 res://Scenes/Segment.tscn
+res://Scripts/Game.gd

@@ -117,8 +117,8 @@ func create_apple():
 	var apple = preload("res://Scenes/Apple.tscn").instantiate()
 	
 	# Select a random position inside the play area
-	apple.position.x = randi_range(80, 720)
-	apple.position.y = randi_range(144, 720)
+	apple.position.x = randi_range(64, 704)
+	apple.position.y = randi_range(128, 704)
 	
 	# Snap the position based on the grid size
 	# Note that the apple's Sprite2D and CollisionShape2D has been offset so that it looks correct

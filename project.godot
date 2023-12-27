@@ -14,7 +14,7 @@ config/name="Godot Snake Game"
 config/tags=PackedStringArray("learning")
 run/main_scene="res://Scenes/Game.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Sprites/Apple.png"
 
 [autoload]
 
